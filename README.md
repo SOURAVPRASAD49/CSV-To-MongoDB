@@ -17,4 +17,8 @@ STEPS TO RUN THE API:
 
 4.To Work on the project, fire up the postman and check all the APIs.
 
-5.run ctrl + c to stop the server.
+5.You can upload your own csv file, else upload demo.csv file.
+
+6.All the uploaded csv files will be inside the Uploads folder.
+
+7.run ctrl + c to stop the server.
