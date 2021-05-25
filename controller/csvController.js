@@ -1,5 +1,5 @@
 const csvtojson = require("csvtojson");
-const Data = require("../models/data");
+const Blog = require("../models/blog");
 
 const upload = (req, res) => {
   const filePath = __basedir + "/uploads/" + req.file.filename;
@@ -7,15 +7,16 @@ const upload = (req, res) => {
     .fromFile(filePath)
     .then((csvData) => {
       for (let i = 0; i < csvData.length; i++) {
-        const data = new Data({
-          id: csvData[i].id,
+        const blog = new Blog({
           title: csvData[i].title,
+          description: csvData[i].description,
+          likes: csvData[i].likes,
           published: csvData[i].published,
         });
-        data
+        blog
           .save()
-          .then((mber) => {
-            console.log(mber);
+          .then((blogData) => {
+            console.log(blogData);
           })
           .catch((err) => {
             console.log(err);

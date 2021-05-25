@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const memberSchema = new Schema(
+const blogSchema = new Schema(
   {
-    id: {
-      type: Number,
-      required: true,
-    },
     title: {
       type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    likes: {
+      type: Number,
       required: true,
     },
     published: {
@@ -18,4 +22,4 @@ const memberSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("member", memberSchema);
+module.exports = mongoose.model("blog", blogSchema);

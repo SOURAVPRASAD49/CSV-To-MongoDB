@@ -6,10 +6,10 @@ const crudController = require("../controller/crud");
 const authController = require("../controller/auth");
 
 //register user
-router.post("/user/register", authController.registerUser);
+router.post("/user/signup", authController.registerUser);
 
 //login user
-router.post("/user/login", authController.loginUser);
+router.post("/user/signin", authController.loginUser);
 
 //uploading csv file
 router.post(
@@ -19,19 +19,19 @@ router.post(
   csvController.upload
 );
 
-//fetching all datas from database
-router.get("/read/data", authController.isAuth, crudController.findAll);
+//fetching all blogs from database
+router.get("/read/blog", authController.isAuth, crudController.findAll);
 
-//create and save data
-router.post("/create/data", authController.isAuth, crudController.create);
+//create and save a new blog on database
+router.post("/create/blog", authController.isAuth, crudController.create);
 
-//find a single data with id
-router.get("/data/:id", authController.isAuth, crudController.findOne);
+//find a single blog with id
+router.get("/blog/:id", authController.isAuth, crudController.findOne);
 
-//updata data
-router.put("/update/:id", authController.isAuth, crudController.update);
+//updata the blog
+router.put("/blog/:id", authController.isAuth, crudController.update);
 
-//delete data
-router.delete("/data/:id", authController.isAuth, crudController.delete);
+//delete the blog
+router.delete("/blog/:id", authController.isAuth, crudController.delete);
 
 module.exports = router;

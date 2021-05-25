@@ -1,15 +1,15 @@
-const Data = require("../models/data");
+const Blog = require("../models/blog");
 
-//geting all data
+//geting all blogs
 module.exports.findAll = (req, res) => {
-  Data.find()
-    .then((data) => {
-      res.send(data);
+  Blog.find()
+    .then((blogData) => {
+      res.send(blogData);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Something went wrong while getting list of datas.",
+          err.message || "Something went wrong while getting list of blogs.",
       });
     });
 };
@@ -22,49 +22,50 @@ module.exports.create = (req, res) => {
     });
   }
 
-  //create data
-  const data = new Data({
-    id: req.body.id,
+  //create new blog
+  const blog = new Blog({
     title: req.body.title,
+    description: req.body.description,
+    likes: req.body.likes,
     published: req.body.published,
   });
 
-  data
+  blog
     .save()
-    .then((savedData) => {
-      res.send(savedData);
+    .then((blogData) => {
+      res.send(blogData);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Something went wrong while creating new data.",
+        message: err.message || "Something went wrong while creating new Blog.",
       });
     });
 };
 
-//geting a single data
+//geting a single blog
 module.exports.findOne = (req, res) => {
-  Data.findById(req.params.id)
-    .then((data) => {
-      if (!data) {
+  Blog.findById(req.params.id)
+    .then((blog) => {
+      if (!blog) {
         return res.status(404).send({
-          message: "Data not found with id " + req.params.id,
+          message: "Blog not found with id " + req.params.id,
         });
       }
-      res.send(data);
+      res.send(blog);
     })
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Data not found with id " + req.params.id,
+          message: "Blog not found with id " + req.params.id,
         });
       }
       res.status(500).send({
-        message: "Error getting data with id " + req.params.id,
+        message: "Error getting blog with id " + req.params.id,
       });
     });
 };
 
-//update data
+//update the blog
 module.exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
@@ -72,56 +73,57 @@ module.exports.update = (req, res) => {
     });
   }
 
-  Data.findByIdAndUpdate(
+  Blog.findByIdAndUpdate(
     req.params.id,
     {
-      id: req.body.id,
       title: req.body.title,
+      description: req.body.description,
+      likes: req.body.likes,
       published: req.body.published,
     },
     { new: true }
   )
-    .then((data) => {
-      if (!data) {
+    .then((blog) => {
+      if (!blog) {
         return res.status(404).send({
-          message: "Data not found with id " + req.params.id,
+          message: "Blog not found with id " + req.params.id,
         });
       }
-      res.send(data);
+      res.send(blog);
     })
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Data not found with id " + req.params.id,
+          message: "Blog not found with id " + req.params.id,
         });
       }
       res.status(500).send({
-        message: "Error getting data with id " + req.params.id,
+        message: "Error getting blog with id " + req.params.id,
       });
     });
 };
 
-//delete data
+//delete the blog
 module.exports.delete = (req, res) => {
-  Data.findByIdAndRemove(req.params.id)
-    .then((data) => {
-      if (!data) {
+  Blog.findByIdAndRemove(req.params.id)
+    .then((blog) => {
+      if (!blog) {
         return res.status(404).send({
-          message: "Data not found with id " + req.params.id,
+          message: "Blog not found with id " + req.params.id,
         });
       }
       res.send({
-        message: "data deleted successfully!",
+        message: "Blog deleted successfully!",
       });
     })
     .catch((err) => {
       if (err.kind === "ObjectId" || err.name === "NotFound") {
         return res.status(404).send({
-          message: "Data not found with id " + req.params.id,
+          message: "Blog not found with id " + req.params.id,
         });
       }
       res.status(500).send({
-        message: "could not delete data with id " + req.params.id,
+        message: "could not delete blog with id " + req.params.id,
       });
     });
 };
