@@ -11,7 +11,7 @@ STEPS TO RUN THE API:
 
 1.run npm install to download all the dependencies.
 
-2.Create a .env file in the root and Add your own MongoDB URL ans ACCESS_TOKEN.
+2.Create a .env file in the root and Add your own MongoDB URL and ACCESS_TOKEN.
 
 3.run npm start to start the server.
 
