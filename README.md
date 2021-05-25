@@ -8,8 +8,13 @@ This is the POSTMAN COLLECTION URL:-
 https://documenter.getpostman.com/view/15932967/TzXunzbv
 
 STEPS TO RUN THE API:
+
 1.run npm install to download all the dependencies.
+
 2.Add your own MongoDB URL ans ACCESS_TOKEN.
+
 3.run npm start to start the server.
+
 4.To Work on the project, fire up the postman and check all the APIs.
+
 5.run ctrl + c to stop the server.
